@@ -19,6 +19,43 @@ def foo(value=None): ...
 -1
 ```
 
+## Semantics
+
+Taken from the [pypi `sentinels` package](https://pypi.org/project/sentinels/). I believe these attributes line up with those of the python3.15 implementation.
+
+Sentinels are always equal to themselves:
+
+```python
+>>> NOTHING == NOTHING
+True
+```
+
+But never to another object:
+
+```python
+>>> from sentinels import Sentinel
+>>> NOTHING == 2
+False
+>>> NOTHING == "NOTHING"
+False
+```
+
+Copying sentinels returns the same object:
+
+```python
+>>> import copy
+>>> copy.deepcopy(NOTHING) is NOTHING
+True
+```
+
+And of course also pickling/unpickling:
+
+```python
+>>> import pickle
+>>> NOTHING is pickle.loads(pickle.dumps(NOTHING))
+True
+```
+
 ## Examples
 
 - In python, `None` is the classic sentinel value.
