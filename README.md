@@ -67,6 +67,28 @@ True
 - `np.nan` from [the numpy constants](https://numpy.org/doc/stable/reference/constants.html) and, arguably, `np.inf`.
 - [This post](https://mail.python.org/archives/list/python-dev@python.org/message/JBYXQH3NV3YBF7P2HLHB5CD6V3GVTY55/) compiles a dozen examples from the python standard library.
 
+First item on the list is an example of using a sentinel in the stdlib because
+`None` isnt implemented yet. In `MutableMapping`, aka code for Dictionary type:
+
+```python
+    __marker = object()
+
+    def pop(self, key, default=__marker):
+        '''D.pop(k[,d]) -> v, remove specified key and return the corresponding
+        value.  If key is not found, d is returned if given, otherwise
+        KeyError is raised.
+        '''
+        try:
+            value = self[key]
+        except KeyError:
+            if default is self.__marker:
+                raise
+            return default
+        else:
+            del self[key]
+            return value
+```
+
 ## What does PEP 661 do?
 
 PEP 661 introduces a specification for 
