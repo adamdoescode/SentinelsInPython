@@ -81,7 +81,7 @@ A common environmental science question:
 
 Here's a sample dataset of soil lead concentration measurements, with two results flagged as below the EPA Method 7000B (Flame Atomic Absorption Spectroscopy) detection limit of approximately 0.5 mg/kg:
 
-| Date | Lead Concentration (mg/kg) | Result Flag (limit = 0.05mg.kg) |
+| Date | Lead Concentration (mg/kg) | Result Flag (limit = 0.5mg.kg) |
 |------------|----------------------------|------------------------|
 | 2023-01-01 | 12.4                       | Detected                |
 | 2023-04-01 | 0.3                         | Below Detection Limit   |
