@@ -67,8 +67,8 @@ True
 - `np.nan` from [the numpy constants](https://numpy.org/doc/stable/reference/constants.html) and, arguably, `np.inf`.
 - [This post](https://mail.python.org/archives/list/python-dev@python.org/message/JBYXQH3NV3YBF7P2HLHB5CD6V3GVTY55/) compiles a dozen examples from the python standard library.
 
-First item on the list is an example of using a sentinel in the stdlib because
-`None` isnt implemented yet. In `MutableMapping`, aka code for Dictionary type:
+First item on the list is an example of using a sentinel in the stdlib.
+In `MutableMapping`, aka part of the code for Dictionary object:
 
 ```python
     __marker = object()
@@ -88,6 +88,10 @@ First item on the list is an example of using a sentinel in the stdlib because
             del self[key]
             return value
 ```
+
+In practice, the above implements `dictthing.pop(key, default)` where if
+you dont pass a default, and thus `default is __marker` it
+raises `KeyError`.
 
 ## What does PEP 661 do?
 
