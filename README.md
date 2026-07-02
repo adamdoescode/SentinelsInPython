@@ -50,6 +50,9 @@ True
 
 And of course also pickling/unpickling:
 
+Adam note: why note the pickling here? Turns out a singleton sentinel unpickled will be a new object which is not a singleton.
+You have to implement __reduce__ to make it return the OG object.
+
 ```python
 >>> import pickle
 >>> NOTHING is pickle.loads(pickle.dumps(NOTHING))
